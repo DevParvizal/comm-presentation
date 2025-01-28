@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+              body {
+                  font-family: 'Poppins', sans-serif;
+                  margin: 0;
+                  padding: 0;
+                  background: linear-gradient(to right, #6a11cb, #2575fc);
+                  color: #fff;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  min-height: 100vh;
+                  
+              }
+      
+              .container {
+                  width: 90%;
+                  max-width: 900px;
+                  background: rgba(255, 255, 255, 0.1);
+                  border-radius: 12px;
+                  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                  backdrop-filter: blur(10px);
+                  transition: all 0.3s ease-in-out;
+                  border: 1px solid rgba(255,255,255, 0.2);
+                  max-height: 90vh; /* added max-height */
+                  overflow-y: auto; /* added overflow-y */
+              }
+          .container::-webkit-scrollbar {
+            width: 8px;
+          }
+      
+          .container::-webkit-scrollbar-track {
+              background: rgba(0, 0, 0, 0.1);
+              border-radius: 10px;
+          }
+          .container::-webkit-scrollbar-thumb {
+              background: rgba(255, 255, 255, 0.3);
+              border-radius: 10px;
+          }
+          .container::-webkit-scrollbar-thumb:hover {
+              background: rgba(255, 255, 255, 0.5);
+          }
+      
+      
+              .slide {
+                  padding: 40px;
+                  display: none;
+                  transition: opacity 0.5s ease-in-out;
+                  opacity: 0;
+                  overflow-y: auto; /* Added scroll */
+              }
+      
+              .slide.active {
+                  display: block;
+                  opacity: 1;
+                  animation: fadeIn 0.5s ease-out;
+              }
+              @keyframes fadeIn {
+                  from {
+                      opacity: 0;
+                      transform: translateY(20px)
+                  }
+                  to {
+                      opacity: 1;
+                      transform: translateY(0);
+                  }
+              }
+              .slide .content {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  text-align: center;
+              }
+      
+              .slide h1 {
+                  color: #fff;
+                  margin-bottom: 20px;
+                  font-weight: 500;
+                  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+              }
+      
+              .slide p {
+                  color: #eee;
+                  line-height: 1.7;
+                  margin-bottom: 30px;
+                  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+              }
+              .profile-image{
+                  width: 150px;
+                  height: 150px;
+                  border-radius: 50%;
+                  overflow: hidden;
+                  margin-bottom: 20px;
+                  border: 3px solid rgba(255,255,255, 0.3);
+                  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+              }
+              .profile-image img{
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+              }
+              .project {
+                  margin-bottom: 30px;
+                  padding: 30px;
+                  background: rgba(255,255,255, 0.05);
+                  border-radius: 8px;
+                  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                  border: 1px solid rgba(255,255,255, 0.1);
+                  backdrop-filter: blur(5px);
+                  transition: transform 0.3s ease-in-out;
+              }
+              .project:hover{
+                  transform: translateY(-5px);
+              }
+      
+              .project h2 {
+                  color: #fff;
+                  margin-bottom: 15px;
+                  font-weight: 500;
+                  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+              }
+      
+              .project p {
+                  color: #ddd;
+                  line-height: 1.6;
+                  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+                  margin-bottom: 20px;
+              }
+      
+              .project-links{
+              display: flex;
+                  justify-content: center;
+                  gap: 10px;
+                  margin-top: 20px
+              }
+              .project-image{
+                  width: 100%;
+                  margin-bottom: 20px;
+                  border-radius: 6px;
+                  overflow: hidden;
+              }
+              .project-image img{
+                  width: 100%;
+                  height: auto;
+                  display: block;
+      
+              }
+              .btn {
+                  padding: 12px 25px;
+                  border: none;
+                  border-radius: 6px;
+                  cursor: pointer;
+                  font-size: 1rem;
+                  transition: all 0.3s ease-in-out;
+                  text-decoration: none;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: 500;
+                  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+              }
+      
+              .btn i {
+                  margin-right: 8px;
+              }
+      
+              .primary-btn{
+                  background-color: #4a90e2;
+                  color: #fff;
+              }
+              .primary-btn:hover{
+                  background-color: #3570b0;
+              }
+      
+              .secondary-btn{
+                  background-color: #e74c3c;
+                  color: #fff;
+              }
+              .secondary-btn:hover{
+                  background-color: #c0392b;
+              }
+              .project-link{
+                  background-color: #2ecc71;
+                  color: #fff;
+              }
+              .project-link:hover{
+                  background-color: #21a559;
+              }
+              /* Media Queries for Responsiveness */
+              @media (max-width: 768px) {
+                  .container {
+                      width: 95%;
+                      max-width: 95%;
+                  }
+                   .slide{
+                    padding: 20px
+                  }
+                  .project {
+                      padding: 20px;
+                  }
+                    .project-links {
+                    flex-direction: column;
+                    gap: 10px;
+                  }
+                   .project-links a {
+                     width: 100%;
+                  }
+              }
+             @media (max-width: 480px) {
+                .slide h1{
+                  font-size: 1.5rem
+                }
+                .slide p{
+                  font-size: 0.9rem
+                }
+                 .project h2{
+                  font-size: 1.2rem
+                 }
+                .project p {
+                   font-size: 0.8rem
+                }
+                .btn{
+                  font-size: 0.9rem;
+                  padding: 10px 18px
+                }
+                  .profile-image {
+                   width: 120px;
+                    height: 120px;
+                  }
+              }
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide active" id="developer-slide">
+            <div class="content">
+                <div class="profile-image">
+                </div>
+                <h1>About the Developer</h1>
+                <p>Hello! I'm a passionate web developer with a love for creating interactive and visually appealing websites. I enjoy turning ideas into functional and beautiful web experiences.</p>
+                <button onclick="showProjects()" class="btn primary-btn">
+                    <i class="fas fa-arrow-right"></i> View Projects
+                </button>
+            </div>
+        </div>
+
+        <div class="slide" id="projects-slide">
+            <div class="content">
+                <h1>Projects Showcase</h1>
+                <div class="project" id="project1">
+                    <h2>Project 1</h2>
+                     <div class="project-image">
+                    </div>
+                    <p>This was my first project! It involved learning the basics of HTML, CSS, and some simple JavaScript. It's a simple landing page to showcase my design and frontend skills.</p>
+                    <div class="project-links">
+                        <a href="groupchat-ttvr.onrender.com" class="btn project-link">
+                             <i class="fas fa-link"></i>  Live Demo
+                        </a>
+                         <a href="#" class="btn project-link">
+                            <i class="fab fa-github"></i>  Github
+                        </a>
+                    </div>
+                </div>
+                 <div class="project" id="project2">
+                    <h2>Project 2</h2>
+                    <div class="project-image">
+                    </div>
+                    <p> This project explores the use of modern frameworks and a more complex design to make an e-commerce website.</p>
+                    <div class="project-links">
+                        <a href="test-taker-chi.vercel.app" class="btn project-link">
+                             <i class="fas fa-link"></i>  Live Demo
+                        </a>
+                         <a href="#" class="btn project-link">
+                            <i class="fab fa-github"></i>  Github
+                        </a>
+                    </div>
+                </div>
+                 <div class="project" id="project3">
+                    <h2>Project 3</h2>
+                     <div class="project-image">
+                    </div>
+                    <p>A project built using a backend language to showcase both frontend and backend skills, it showcases my ability to create a fullstack application.</p>
+                      <div class="project-links">
+                        <a href="note-app-teal-beta.vercel.app" class="btn project-link">
+                           <i class="fas fa-link"></i>  Live Demo
+                         </a>
+                        <a href="#" class="btn project-link">
+                            <i class="fab fa-github"></i>  Github
+                        </a>
+                    </div>
+                </div>
+                <button onclick="showDeveloper()" class="btn secondary-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Developer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
+            }
+
+            window.showProjects = function() {
+                currentSlide = 1;
+                showSlide(currentSlide);
+            }
+
+            window.showDeveloper = function() {
+                currentSlide = 0;
+                showSlide(currentSlide);
+            }
+
+            // Initial setup
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
